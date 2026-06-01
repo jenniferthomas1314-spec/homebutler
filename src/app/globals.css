@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+  --color-dark:    #1a1a18;
+  --color-gold:    #c9a84c;
+  --color-gold-l:  #e8d5a3;
+  --color-green:   #2d5a3d;
+  --color-green-l: #e8f0eb;
+  --color-red:     #8b3a3a;
+  --color-red-l:   #f5e8e8;
+  --color-amber:   #a0620a;
+  --color-amber-l: #fdf0dc;
+  --color-blue:    #1a3a5c;
+  --color-blue-l:  #e8f0f8;
+  --color-purple:  #4a2a6a;
+  --color-purple-l:#f0e8f8;
+  --color-teal:    #1a5a52;
+  --color-teal-l:  #e0f4f2;
+  --color-muted:   #9a9488;
+  --color-border:  #ece8e0;
+  --color-surface: #ffffff;
+  --color-bg:      #faf7f2;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  
+  body {
+    font-family: var(--font-dm-sans);
+    background: var(--color-bg);
+    color: var(--color-dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-playfair);
+  }
+}
+
+@layer components {
+  /* ── Cards ── */
+  .card {
+    @apply bg-surface border border-border rounded-card p-4;
+  }
+  .card-sm {
+    @apply bg-surface border border-border rounded-card p-3;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center gap-1.5 border-none rounded-lg px-3.5 py-1.5
+           text-[12px] font-[500] cursor-pointer transition-all duration-150
+           font-sans;
+  }
+  .btn-dark   { @apply bg-dark text-white hover:bg-[#333]; }
+  .btn-gold   { @apply bg-gold text-dark hover:bg-[#b8952e]; }
+  .btn-ghost  { @apply bg-bg border border-border text-dark hover:bg-border; }
+  .btn-danger { @apply bg-red-light text-red; }
+  .btn-green  { @apply bg-green text-white; }
+  .btn-purple { @apply bg-purple text-white; }
+  .btn-lg     { @apply px-6 py-2.5 text-[13px] font-semibold; }
+  .btn-sm     { @apply px-2 py-1 text-[11px]; }
+
+  /* ── Form elements ── */
+  .field {
+    @apply flex flex-col gap-1;
+  }
+  .field label {
+    @apply text-[10px] font-medium text-muted uppercase tracking-wider;
+  }
+  .field input, .field select, .field textarea {
+    @apply w-full px-3 py-2 border border-border rounded-lg bg-bg text-dark
+           text-[13px] outline-none transition-colors;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    @apply border-gold;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-block px-1.5 py-px rounded-pill text-[9px] font-medium ml-1;
+  }
+  .badge-overdue  { @apply bg-red-light text-red; }
+  .badge-soon     { @apply bg-amber-light text-amber; }
+  .badge-ok       { @apply bg-green-light text-green; }
+  .badge-blue     { @apply bg-blue-light text-blue; }
+  .badge-purple   { @apply bg-purple-light text-purple; }
+
+  /* ── Role pills ── */
+  .role-owner  { @apply bg-[#fff3cd] text-[#856404]; }
+  .role-admin  { @apply bg-blue-light text-blue; }
+  .role-member { @apply bg-green-light text-green; }
+  .role-viewer { @apply bg-bg text-muted border border-border; }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    @apply bg-border rounded-full h-1 overflow-hidden;
+  }
+  .progress-fill {
+    @apply bg-gold h-1 rounded-full transition-all duration-300;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40%           { transform: translateY(-5px); }
+  }
+
+  .animate-fade-up  { animation: fadeUp .22s ease; }
+  .animate-slide-up { animation: slideUp .22s ease; }
+  .dot-1 { animation: bounce .9s infinite; }
+  .dot-2 { animation: bounce .9s .2s infinite; }
+  .dot-3 { animation: bounce .9s .4s infinite; }
+
+  /* ── Loading dots ── */
+  .loading-dot {
+    @apply w-1.5 h-1.5 rounded-full bg-muted;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+
+  /* ── Print ── */
+  @media print {
+    .no-print { display: none !important; }
+  }
+}
