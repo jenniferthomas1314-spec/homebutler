@@ -126,20 +126,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      <div style={{background:'white', border:'1px solid #ece8e0', borderRadius:13, padding:20, marginBottom:16}}>
-        <div style={{fontFamily:'Georgia,serif', fontSize:16, fontWeight:500, marginBottom:4}}>Affiliate Tags</div>
-        <div style={{fontSize:12, color:'#9a9488', marginBottom:16}}>Earn commissions when users buy parts through HomeButler.</div>
-        <div style={{display:'flex', flexDirection:'column', gap:10}}>
-          {[['Amazon', amazonTag, setAmazonTag, 'YOUR-TAG-20', '📦'], ['Home Depot', hdTag, setHdTag, 'YOUR-HD-TAG', '🏠'], ['Walmart', walmartTag, setWalmartTag, 'YOUR-WM-TAG', '🛒']].map(([label, val, setter, ph, icon]) => (
-            <div key={label as string} style={{display:'flex', alignItems:'center', gap:10}}>
-              <span style={{fontSize:13, fontWeight:500, width:110, flexShrink:0}}>{icon as string} {label as string}</span>
-              <input value={val as string} onChange={e => (setter as Function)(e.target.value)} placeholder={ph as string} style={{flex:1, padding:'7px 10px', border:'1px solid #ece8e0', borderRadius:7, fontSize:12, background:'#faf7f2', outline:'none', fontFamily:'monospace'}}/>
-              {(val as string) && <span style={{color:'#2d5a3d', fontSize:10, fontWeight:600}}>✅</span>}
-            </div>
-          ))}
-        </div>
-      </div>
-
       <button type="button" onClick={saveSettings} disabled={saving} style={{width:'100%', padding:12, border:'none', borderRadius:9, background:saved?'#2d5a3d':'#c9a84c', color:saved?'white':'#1a1a18', fontSize:14, fontWeight:600, cursor:'pointer', marginBottom:12, transition:'all .2s'}}>
         {saving ? 'Saving…' : saved ? '✓ Saved!' : 'Save settings'}
       </button>
