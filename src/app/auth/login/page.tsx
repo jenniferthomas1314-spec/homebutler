@@ -25,8 +25,10 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: { data: { name } },
-      })
+        options: { data: { name } ,
+      emailRedirectTo: `https://homebutler-eo0uupo2b-my-home-butler.vercel.app/onboarding`,
+  },
+})
       if (error) { setError(error.message); setLoading(false); return }
       router.push('/onboarding')
     } else {
