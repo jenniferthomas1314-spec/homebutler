@@ -22,15 +22,16 @@ export default function LoginPage() {
     setError('')
 
     if (mode === 'signup') {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
        options: { data: { name } },
 })
+console.log('Signup response:', JSON.stringify(data), JSON.stringify(error))
       if (error) { setError(error.message); setLoading(false); return }
       router.push('/onboarding')
     } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) { setError(error.message); setLoading(false); return }
       router.push('/dashboard')
     }
